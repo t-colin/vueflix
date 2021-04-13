@@ -6,63 +6,41 @@
 
     <select v-model="selected">
       <option value="">tous</option>
-      <option>comedy</option>
-      <option>drama</option>
-      <option>thriller</option>
-      <option>action</option>
-      <option>science fiction</option>
+      <option value="comedy">comédie</option>
+      <option value="drama">drame</option>
+      <option value="thriller">thriller</option>
+      <option value="action">action</option>
+      <option value="science fiction">science-fiction</option>
     </select>
     <p>
       <i>vous avez {{ comptage }} films</i>
     </p>
-    <div v-for="film in getFilmsByGender" :key="film.id">
+    <div v-for="film in filmsByGender" :key="film.id">
       <Movie
         :title="film.title"
         :genres="film.genres"
         :rating="film.rating"
       ></Movie>
     </div>
-
-    <h1>ajouter un film</h1>
-    <p>
-      <label for="titre">titre </label>
-      <input id="titre" v-model="titre" type="text" name="titre" />
-    </p>
-    <p>
-      <label for="categories">genres </label>
-      <input
-        id="categories"
-        v-model="categories"
-        type="text"
-        name="categories"
-      />
-    </p>
-    <p>
-      <label for="note">note </label>
-      <input id="note" v-model="note" type="text" name="note" />
-    </p>
-    <p>
-      <label for="review">review </label>
-      <input id="review" v-model="revue" type="textarea" name="review" />
-    </p>
-    <p>
-      <label for="desc">description </label>
-      <input id="desc" v-model="desc" type="textarea" name="desc" />
-    </p>
-
-    <p>
-      <button type="button" @click="addFilm">ajouter le film</button>
-    </p>
+    <MovieCreation
+      :addFilm="addFilm"
+      v-on:titre="titreChange"
+      v-on:categories="categoriesChange"
+      v-on:note="noteChange"
+      v-on:review="reviewChange"
+      v-on:desc="descChange"
+    ></MovieCreation>
   </div>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
 import Movie from "./components/Movie.vue";
+import MovieCreation from "./components/MovieCreation.vue";
 
 export default {
   name: "App",
-  components: { Movie },
+  components: { Movie, MovieCreation },
   methods: {
     addFilm() {
       let newfilm = Object.assign({}, this.films[0]);
@@ -74,13 +52,33 @@ export default {
       newfilm.description = this.desc;
       this.films.push(newfilm);
     },
+    titreChange(event) {
+      const { value } = event.target;
+      this.titre = value;
+    },
+    categoriesChange(event) {
+      const { value } = event.target;
+      this.categories = value;
+    },
+    noteChange(event) {
+      const { value } = event.target;
+      this.note = value;
+    },
+    reviewChange(event) {
+      const { value } = event.target;
+      this.review = value;
+    },
+    descChange(event) {
+      const { value } = event.target;
+      this.desc = value;
+    },
   },
 
   computed: {
     comptage: function () {
-      return this.getFilmsByGender.length;
+      return this.filmsByGender.length;
     },
-    getFilmsByGender: function () {
+    filmsByGender: function () {
       if (this.selected == "") {
         return this.films;
       } else {
@@ -93,7 +91,7 @@ export default {
       title: "Bienvenue sur VueFlix !",
       titre: "",
       categories: "",
-      note: "",
+      note: 0,
       revue: "",
       desc: "",
       selected: "",

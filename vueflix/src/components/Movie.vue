@@ -19,8 +19,10 @@ export default {
       default: "film par défaut",
     },
     genres: {
-      type: String,
-      default: "drama",
+      type: Array,
+      default: function () {
+        return ["drama"];
+      },
     },
     rating: {
       type: Number,
