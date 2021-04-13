@@ -11,7 +11,6 @@
       <option>thriller</option>
       <option>action</option>
       <option>science fiction</option>
-      <option>drame</option>
     </select>
     <p>
       <i>vous avez {{ comptage }} films</i>
@@ -81,7 +80,7 @@ export default {
 
   computed: {
     comptage: function () {
-      return this.films.length;
+      return this.getFilmsByGender.length;
     },
     getFilmsByGender: function () {
       if (this.selected == "") {
@@ -125,7 +124,7 @@ export default {
         {
           id: 3,
           title: "Joker",
-          genres: ["drame"],
+          genres: ["drama"],
           rating: 8.8,
           review:
             "With an insightful and searing exploration of human behavior, ‘Parasite’ is a masterfully crafted film that is a definite must watch.",
