@@ -5,18 +5,19 @@
     <label for="filtre">filtrer par catégorie:</label>
 
     <select v-model="selected">
-      <option disabled value="">filtrer par</option>
+      <option value="">tous</option>
       <option>comedy</option>
       <option>drama</option>
       <option>thriller</option>
       <option>action</option>
       <option>science fiction</option>
+      <option>drame</option>
     </select>
+    <span>Sélectionné : {{ selected }}</span>
     <p>
       <i>vous avez {{ comptage }} films</i>
     </p>
-    <div v-for="film in films" :key="film.id">
-      <!-- | filterBy selected -->
+    <div v-for="film in getFilmsByGender" :key="film.id">
       <h2>{{ film.title }}</h2>
       <p>
         genres :
@@ -83,16 +84,23 @@ export default {
     comptage: function () {
       return this.films.length;
     },
+    getFilmsByGender: function () {
+      if (this.selected == "") {
+        return this.films;
+      } else {
+        return this.films.filter((el) => el.genres.includes(this.selected));
+      }
+    },
   },
   data: function () {
     return {
       title: "Bienvenue sur VueFlix !",
-      selected: "",
       titre: "",
       categories: "",
       note: "",
       revue: "",
       desc: "",
+      selected: "",
 
       films: [
         {
