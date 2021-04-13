@@ -13,7 +13,6 @@
       <option>science fiction</option>
       <option>drame</option>
     </select>
-    <span>Sélectionné : {{ selected }}</span>
     <p>
       <i>vous avez {{ comptage }} films</i>
     </p>
