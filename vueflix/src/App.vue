@@ -22,14 +22,7 @@
         :rating="film.rating"
       ></Movie>
     </div>
-    <MovieCreation
-      :addFilm="addFilm"
-      v-on:titre="titreChange"
-      v-on:categories="categoriesChange"
-      v-on:note="noteChange"
-      v-on:review="reviewChange"
-      v-on:desc="descChange"
-    ></MovieCreation>
+    <MovieCreation :addFilm="addFilm"></MovieCreation>
   </div>
 </template>
 
@@ -37,6 +30,9 @@
 // import HelloWorld from "./components/HelloWorld.vue";
 import Movie from "./components/Movie.vue";
 import MovieCreation from "./components/MovieCreation.vue";
+import EventBus from "./event-bus.js";
+
+EventBus.$on("titre", this.changeData(titre));
 
 export default {
   name: "App",
@@ -52,25 +48,8 @@ export default {
       newfilm.description = this.desc;
       this.films.push(newfilm);
     },
-    titreChange(event) {
-      const { value } = event.target;
-      this.titre = value;
-    },
-    categoriesChange(event) {
-      const { value } = event.target;
-      this.categories = value;
-    },
-    noteChange(event) {
-      const { value } = event.target;
-      this.note = value;
-    },
-    reviewChange(event) {
-      const { value } = event.target;
-      this.review = value;
-    },
-    descChange(event) {
-      const { value } = event.target;
-      this.desc = value;
+    changeData(data) {
+      this.data = data;
     },
   },
 

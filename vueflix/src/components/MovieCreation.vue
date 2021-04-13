@@ -5,7 +5,8 @@
       <label for="titre">titre </label>
       <input
         id="titre"
-        v-on:input="(event) => this.$emit('titre', event)"
+        v-model="titre"
+        @change="emitTitre()"
         type="text"
         name="titre"
       />
@@ -14,7 +15,8 @@
       <label for="categories">genres </label>
       <input
         id="categories"
-        v-on:input="(event) => this.$emit('categories', event)"
+        v-model="categories"
+        @change="emitCategories()"
         type="text"
         name="categories"
       />
@@ -23,7 +25,8 @@
       <label for="note">note </label>
       <input
         id="note"
-        v-on:input="(event) => this.$emit('note', event)"
+        v-model="note"
+        @change="emitNote()"
         type="text"
         name="note"
       />
@@ -32,7 +35,8 @@
       <label for="review">review </label>
       <input
         id="review"
-        v-on:input="(event) => this.$emit('revue', event)"
+        v-model="revue"
+        @change="emitReview()"
         type="textarea"
         name="review"
       />
@@ -41,7 +45,8 @@
       <label for="desc">description </label>
       <input
         id="desc"
-        v-on:input="(event) => this.$emit('desc', event)"
+        v-model="desc"
+        @change="emitDesc()"
         type="textarea"
         name="desc"
       />
@@ -53,10 +58,28 @@
   </div>
 </template>
 <script>
+import EventBus from "../event-bus.js";
 export default {
   name: "MovieCreation",
   props: {
     addFilm: { type: Function },
+  },
+  methods: {
+    emitTitre() {
+      EventBus.$emit("titre", this.titre);
+    },
+    emitCategories() {
+      EventBus.$emit("categories", this.categories);
+    },
+    emitNote() {
+      EventBus.$emit("note", this.note);
+    },
+    emitReview() {
+      EventBus.$emit("review", this.review);
+    },
+    emitDesc() {
+      EventBus.$emit("desc", this.desc);
+    },
   },
 };
 </script>
