@@ -16,14 +16,11 @@
       <i>vous avez {{ comptage }} films</i>
     </p>
     <div v-for="film in getFilmsByGender" :key="film.id">
-      <h2>{{ film.title }}</h2>
-      <p>
-        genres :
-        <span v-for="genre in film.genres" :key="genre">
-          {{ genre }}
-        </span>
-      </p>
-      <p>note : {{ film.rating }}/10</p>
+      <Movie
+        :title="film.title"
+        :genres="film.genres"
+        :rating="film.rating"
+      ></Movie>
     </div>
 
     <h1>ajouter un film</h1>
@@ -61,10 +58,11 @@
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
+import Movie from "./components/Movie.vue";
 
 export default {
   name: "App",
-  components: {},
+  components: { Movie },
   methods: {
     addFilm() {
       let newfilm = Object.assign({}, this.films[0]);
