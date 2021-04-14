@@ -104,7 +104,39 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+$primary-color: #b88f73;
+$darker-primary: darken($primary-color, 10);
+
+body {
+  background-color: #16383a;
+}
+h1,
+h2 {
+  color: $primary-color;
+}
+p,
+label {
+  color: rgb(255, 255, 255);
+}
+#Movie {
+  background-color: #0d646b;
+  width: 70%;
+  height: 150px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  padding-top: 10px;
+}
+
+button {
+  background-color: $primary-color;
+  &:hover {
+    background-color: $darker-primary;
+  }
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
