@@ -31,11 +31,9 @@
 import { EventBus } from "./event-bus";
 import Movie from "./components/Movie.vue";
 import MovieCreation from "./components/MovieCreation.vue";
-
 export default {
   name: "App",
   components: { Movie, MovieCreation },
-
   computed: {
     comptage: function () {
       return this.filmsByGender.length;
@@ -63,7 +61,6 @@ export default {
       revue: "",
       desc: "",
       selected: "",
-
       films: [
         {
           id: 1,
@@ -103,21 +100,32 @@ export default {
   },
 };
 </script>
-
 <style lang="scss">
 $primary-color: #b88f73;
 $darker-primary: darken($primary-color, 10);
-
 body {
   background-color: #16383a;
+}
+select {
+  margin-bottom: 5px;
+  border: solid white 1px;
+  border-radius: 5px;
+  color: white;
+}
+input {
+  border: solid white 1px;
+  border-radius: 5px;
+  color: white;
 }
 h1,
 h2 {
   color: $primary-color;
+  margin-bottom: 5px;
 }
 p,
 label {
   color: rgb(255, 255, 255);
+  margin-bottom: 5px;
 }
 #Movie {
   background-color: #0d646b;
@@ -127,16 +135,15 @@ label {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
-  padding-top: 10px;
+  padding-top: 30px;
+  border: solid black 1px;
 }
-
 button {
   background-color: $primary-color;
   &:hover {
     background-color: $darker-primary;
   }
 }
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

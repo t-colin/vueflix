@@ -3,19 +3,19 @@
     <h1>Ajouter un film</h1>
     <form action="#" @submit.prevent="addFilm">
       <p>
-        <label for="title">titre </label>
+        <label for="title">titre: </label>
         <input id="title" v-model="movie.title" type="text" name="title" />
       </p>
       <p>
-        <label for="genres">genres </label>
+        <label for="genres">genres: </label>
         <input id="genres" v-model="movie.genres" type="text" name="genres" />
       </p>
       <p>
-        <label for="rating">note </label>
+        <label for="rating">note: </label>
         <input id="rating" v-model="movie.rating" type="text" name="rating" />
       </p>
       <p>
-        <label for="review">review </label>
+        <label for="review">review: </label>
         <input
           id="review"
           v-model="movie.review"
@@ -24,7 +24,7 @@
         />
       </p>
       <p>
-        <label for="description">description </label>
+        <label for="description">description: </label>
         <input
           id="description"
           v-model="movie.description"
