@@ -22,36 +22,19 @@
         :rating="film.rating"
       ></Movie>
     </div>
-    <MovieCreation :addFilm="addFilm"></MovieCreation>
+    <MovieCreation />
   </div>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
+import { EventBus } from "./event-bus";
 import Movie from "./components/Movie.vue";
 import MovieCreation from "./components/MovieCreation.vue";
-import EventBus from "./event-bus.js";
-
-EventBus.$on("titre", this.changeData(titre));
 
 export default {
   name: "App",
   components: { Movie, MovieCreation },
-  methods: {
-    addFilm() {
-      let newfilm = Object.assign({}, this.films[0]);
-      newfilm.id = this.films.length + 1;
-      newfilm.title = this.titre;
-      newfilm.genres = [this.categories];
-      newfilm.rating = this.note;
-      newfilm.review = this.revue;
-      newfilm.description = this.desc;
-      this.films.push(newfilm);
-    },
-    changeData(data) {
-      this.data = data;
-    },
-  },
 
   computed: {
     comptage: function () {
@@ -63,6 +46,12 @@ export default {
       } else {
         return this.films.filter((el) => el.genres.includes(this.selected));
       }
+    },
+  },
+  methods: {
+    addMovie(movie) {
+      const genres = movie.genres.split(" ");
+      this.films.push({ ...movie, genres });
     },
   },
   data: function () {
@@ -108,6 +97,9 @@ export default {
         },
       ],
     };
+  },
+  created() {
+    EventBus.$on("createMovie", this.addMovie);
   },
 };
 </script>

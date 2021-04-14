@@ -1,84 +1,62 @@
 <template>
   <div id="MovieCreation">
-    <h1>ajouter un film</h1>
-    <p>
-      <label for="titre">titre </label>
-      <input
-        id="titre"
-        v-model="titre"
-        @change="emitTitre()"
-        type="text"
-        name="titre"
-      />
-    </p>
-    <p>
-      <label for="categories">genres </label>
-      <input
-        id="categories"
-        v-model="categories"
-        @change="emitCategories()"
-        type="text"
-        name="categories"
-      />
-    </p>
-    <p>
-      <label for="note">note </label>
-      <input
-        id="note"
-        v-model="note"
-        @change="emitNote()"
-        type="text"
-        name="note"
-      />
-    </p>
-    <p>
-      <label for="review">review </label>
-      <input
-        id="review"
-        v-model="revue"
-        @change="emitReview()"
-        type="textarea"
-        name="review"
-      />
-    </p>
-    <p>
-      <label for="desc">description </label>
-      <input
-        id="desc"
-        v-model="desc"
-        @change="emitDesc()"
-        type="textarea"
-        name="desc"
-      />
-    </p>
+    <h1>Ajouter un film</h1>
+    <form action="#" @submit.prevent="addFilm">
+      <p>
+        <label for="title">titre </label>
+        <input id="title" v-model="movie.title" type="text" name="title" />
+      </p>
+      <p>
+        <label for="genres">genres </label>
+        <input id="genres" v-model="movie.genres" type="text" name="genres" />
+      </p>
+      <p>
+        <label for="rating">note </label>
+        <input id="rating" v-model="movie.rating" type="text" name="rating" />
+      </p>
+      <p>
+        <label for="review">review </label>
+        <input
+          id="review"
+          v-model="movie.review"
+          type="textarea"
+          name="review"
+        />
+      </p>
+      <p>
+        <label for="description">description </label>
+        <input
+          id="description"
+          v-model="movie.description"
+          type="textarea"
+          name="description"
+        />
+      </p>
 
-    <p>
-      <button type="button" @click="addFilm">ajouter le film</button>
-    </p>
+      <p>
+        <button type="submit">ajouter le film</button>
+      </p>
+    </form>
   </div>
 </template>
 <script>
-import EventBus from "../event-bus.js";
+import { EventBus } from "../event-bus.js";
 export default {
   name: "MovieCreation",
-  props: {
-    addFilm: { type: Function },
+  data: function () {
+    return {
+      movie: {
+        title: "",
+        genres: "",
+        rating: 0,
+        review: "",
+        description: "",
+      },
+    };
   },
   methods: {
-    emitTitre() {
-      EventBus.$emit("titre", this.titre);
-    },
-    emitCategories() {
-      EventBus.$emit("categories", this.categories);
-    },
-    emitNote() {
-      EventBus.$emit("note", this.note);
-    },
-    emitReview() {
-      EventBus.$emit("review", this.review);
-    },
-    emitDesc() {
-      EventBus.$emit("desc", this.desc);
+    addFilm() {
+      EventBus.$emit("createMovie", this.movie);
     },
   },
 };
