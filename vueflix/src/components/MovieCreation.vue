@@ -11,8 +11,14 @@
         <input id="genres" v-model="movie.genres" type="text" name="genres" />
       </p>
       <p>
-        <label for="rating">note: </label>
-        <input id="rating" v-model="movie.rating" type="text" name="rating" />
+        note:
+        <v-rating
+          hover
+          length="10"
+          size="10"
+          value="3"
+          v-model="movie.rating"
+        ></v-rating>
       </p>
       <p>
         <label for="review">review: </label>
