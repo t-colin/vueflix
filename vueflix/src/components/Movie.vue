@@ -9,7 +9,7 @@
     </p>
     <p>
       note :
-      <v-rating hover length="10" readonly size="24" :value="rating"></v-rating>
+      <v-rating hover length="10" readonly size="30" :value="rating"></v-rating>
     </p>
   </div>
 </template>
