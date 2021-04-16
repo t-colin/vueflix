@@ -9,8 +9,9 @@
     </p>
     <p>
       note :
-      <v-rating hover length="10" readonly size="30" :value="rating"></v-rating>
+      <v-rating hover length="10" readonly size="20" :value="rating"></v-rating>
     </p>
+    <p class="detail">détail</p>
   </div>
 </template>
 <script>
@@ -51,4 +52,7 @@ export default {
 };
 </script>
 <style lang="scss">
+.detail {
+  text-align: right;
+}
 </style>

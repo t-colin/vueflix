@@ -26,7 +26,7 @@
         <v-rating
           hover
           length="10"
-          size="20"
+          size="15"
           value="3"
           v-model="movie.rating"
         ></v-rating>
