@@ -9,13 +9,18 @@
     </p>
     <p>
       note :
-      <v-rating hover length="10" readonly size="24" :value="rating"></v-rating>
+      <v-rating hover length="10" readonly size="30" :value="rating"></v-rating>
     </p>
   </div>
 </template>
 <script>
 export default {
   name: "Movie",
+  data() {
+    return {
+      categories: [],
+    };
+  },
   props: {
     title: {
       type: String,
@@ -30,6 +35,17 @@ export default {
     rating: {
       type: Number,
       defaut: 10,
+    },
+  },
+  filters: {
+    idToGenre: function (val) {
+      for (let el of this.categories) {
+        if (val == el.id) {
+          return (val = el.name);
+        } else {
+          return val;
+        }
+      }
     },
   },
 };

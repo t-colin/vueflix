@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" data-app>
     <img alt="Vue logo" src="./assets/logo.png" />
     <H1>Bienvenue sur Votre VueFlix !</H1>
     <label for="filtre">filtrer par catégorie:</label>
@@ -48,9 +48,8 @@ export default {
   },
   methods: {
     addMovie(movie) {
-      const genres = movie.genres.split(" ");
-      const rating = parseInt(movie.rating);
-      this.films.push({ ...movie, genres, rating });
+      const rating = parseFloat(movie.rating);
+      this.films.push({ ...movie, rating });
     },
   },
   data: function () {
