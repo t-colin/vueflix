@@ -6,7 +6,6 @@
         <v-toolbar-title>Séléction du Titre</v-toolbar-title>
         <v-combobox
           v-model="movie.title"
-          :loading="loading"
           :items="movieProposition"
           :search-input.sync="search"
           class="mx-4"
@@ -16,7 +15,7 @@
           label="quel est le titre du film ?"
           solo-inverted
         ></v-combobox>
-        <v-btn @click="autocomplete">ok</v-btn>
+        <v-btn @click="autocomplete" v-if="loading">ok</v-btn>
       </v-toolbar>
       <p>
         <label for="genres">genres: </label>
@@ -64,6 +63,8 @@ export default {
   name: "MovieCreation",
   data: function () {
     return {
+      categories: [],
+      pushcategorie: [],
       loading: false,
       search: null,
       movie: {
@@ -83,19 +84,41 @@ export default {
         val && val !== this.select && this.getResult(val);
     },
   },
+  created() {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/genre/movie/list?api_key=80d0dd074cbffeb2db4b0123882c7f44"
+      )
+      .then((reponse) => {
+        this.loading = true;
+        this.categories = reponse.data.genres;
+        console.log(reponse);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
   methods: {
     autocomplete() {
       this.movies.filter((el) => {
-        //this.el.includes(this.movie.title);
         if (el.title === this.movie.title) {
-          this.movie.genres = el.genre_ids;
+          this.pushcategorie = [];
+          for (let gr of el.genre_ids) {
+            for (let el of this.categories) {
+              if (gr == el.id) {
+                gr = el.name;
+                this.pushcategorie.push(gr);
+              }
+            }
+          }
+          console.log(el.genre_ids);
+          this.movie.genres = this.pushcategorie;
           this.movie.rating = el.vote_average;
           this.movie.review = el.overview;
           this.movie.description = el.overview;
-          console.log(el);
         }
       });
-      // this.movie.genre =
     },
     addFilm() {
       EventBus.$emit("createMovie", this.movie);
@@ -122,7 +145,6 @@ export default {
           }
         })
         .catch(() => console.log("raté"));
-      console.log(this.movieProposition);
     },
   },
 };

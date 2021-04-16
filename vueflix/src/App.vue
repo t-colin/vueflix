@@ -48,9 +48,8 @@ export default {
   },
   methods: {
     addMovie(movie) {
-      const genres = movie.genres.split(" ");
-      const rating = parseInt(movie.rating);
-      this.films.push({ ...movie, genres, rating });
+      const rating = parseFloat(movie.rating);
+      this.films.push({ ...movie, rating });
     },
   },
   data: function () {

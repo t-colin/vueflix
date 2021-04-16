@@ -16,6 +16,11 @@
 <script>
 export default {
   name: "Movie",
+  data() {
+    return {
+      categories: [],
+    };
+  },
   props: {
     title: {
       type: String,
@@ -30,6 +35,17 @@ export default {
     rating: {
       type: Number,
       defaut: 10,
+    },
+  },
+  filters: {
+    idToGenre: function (val) {
+      for (let el of this.categories) {
+        if (val == el.id) {
+          return (val = el.name);
+        } else {
+          return val;
+        }
+      }
     },
   },
 };
