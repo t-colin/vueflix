@@ -1,16 +1,27 @@
 <template>
   <div id="Movie">
-    <h2>{{ title }}</h2>
+    <h2>{{ film.title }}</h2>
     <p>
       genres :
-      <span v-for="genre in genres" :key="genre">
+      <span v-for="genre in film.genres" :key="genre">
         {{ genre }}
       </span>
     </p>
     <p>
       note :
-      <v-rating hover length="10" readonly size="30" :value="rating"></v-rating>
+      <v-rating
+        hover
+        length="10"
+        readonly
+        size="20"
+        :value="film.rating"
+      ></v-rating>
     </p>
+    <router-link
+      class="detail"
+      :to="{ name: 'detail', params: { id: film.id, film: film } }"
+      >détail</router-link
+    >
   </div>
 </template>
 <script>
@@ -22,19 +33,8 @@ export default {
     };
   },
   props: {
-    title: {
-      type: String,
-      default: "film par défaut",
-    },
-    genres: {
-      type: Array,
-      default: function () {
-        return ["drama"];
-      },
-    },
-    rating: {
-      type: Number,
-      defaut: 10,
+    film: {
+      type: Object,
     },
   },
   filters: {
@@ -51,4 +51,7 @@ export default {
 };
 </script>
 <style lang="scss">
+.detail {
+  text-align: right;
+}
 </style>

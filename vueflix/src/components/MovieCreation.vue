@@ -17,42 +17,32 @@
         ></v-combobox>
         <v-btn @click="autocomplete" v-if="loading">ok</v-btn>
       </v-toolbar>
-      <p>
-        <label for="genres">genres: </label>
-        <input id="genres" v-model="movie.genres" type="text" name="genres" />
-      </p>
-      <p>
-        note:
-        <v-rating
-          hover
-          length="10"
-          size="20"
-          value="3"
-          v-model="movie.rating"
-        ></v-rating>
-      </p>
-      <p>
-        <label for="review">review: </label>
-        <input
-          id="review"
-          v-model="movie.review"
-          type="textarea"
-          name="review"
-        />
-      </p>
-      <p>
-        <label for="description">description: </label>
-        <input
-          id="description"
-          v-model="movie.description"
-          type="textarea"
-          name="description"
-        />
-      </p>
-
-      <p>
-        <button type="submit">ajouter le film</button>
-      </p>
+      <v-text-field
+        dark
+        v-model="movie.genres"
+        label="genres"
+        filled
+      ></v-text-field>
+      <v-text-field
+        dark
+        v-model="movie.review"
+        label="review"
+        filled
+      ></v-text-field>
+      <v-text-field
+        dark
+        v-model="movie.description"
+        label="description"
+        filled
+      ></v-text-field>
+      <v-rating
+        hover
+        length="10"
+        size="25"
+        value="3"
+        v-model="movie.rating"
+      ></v-rating>
+      <v-btn class="mr-4" type="submit">ajouter le film </v-btn>
     </form>
   </div>
 </template>
@@ -84,7 +74,7 @@ export default {
         val && val !== this.select && this.getResult(val);
     },
   },
-  created() {
+  beforeMount() {
     axios
       .get(
         "https://api.themoviedb.org/3/genre/movie/list?api_key=80d0dd074cbffeb2db4b0123882c7f44"
@@ -150,4 +140,8 @@ export default {
 };
 </script>
 <style>
+.mr-4 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 </style>
