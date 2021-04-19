@@ -50,6 +50,7 @@ export default {
 <style lang="scss">
 $primary-color: #b88f73;
 $darker-primary: darken($primary-color, 10);
+
 body {
   background-color: #16383a;
 }

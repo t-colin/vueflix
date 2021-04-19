@@ -14,11 +14,7 @@
       <i>vous avez {{ comptage }} films</i>
     </p>
     <div v-for="film in filmsByGender" :key="film.id">
-      <Movie
-        :title="film.title"
-        :genres="film.genres"
-        :rating="film.rating"
-      ></Movie>
+      <Movie :film="film"></Movie>
     </div>
     <MovieCreation />
   </div>
