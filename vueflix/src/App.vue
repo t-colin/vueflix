@@ -56,6 +56,7 @@ body {
 }
 select {
   margin-bottom: 5px;
+  color: rgb(52, 92, 221);
 }
 h1,
 h2 {
@@ -66,6 +67,9 @@ p,
 label {
   color: rgb(255, 255, 255);
   margin-bottom: 5px;
+}
+.ma-12 {
+  position: absolute;
 }
 #Movie {
   background-color: #0d646b;
