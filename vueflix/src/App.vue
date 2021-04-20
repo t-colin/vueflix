@@ -56,14 +56,6 @@ body {
 }
 select {
   margin-bottom: 5px;
-  border: solid white 1px;
-  border-radius: 5px;
-  color: white;
-}
-input {
-  border: solid white 1px;
-  border-radius: 5px;
-  color: white;
 }
 h1,
 h2 {
@@ -74,12 +66,6 @@ p,
 label {
   color: rgb(255, 255, 255);
   margin-bottom: 5px;
-}
-.detail {
-  margin-right: 5px;
-}
-.ma-12 {
-  position: absolute;
 }
 #Movie {
   background-color: #0d646b;
