@@ -1,7 +1,7 @@
 <template>
   <div id="MovieCreation">
     <h1>Ajouter un film</h1>
-    <form action="#" @submit.prevent="addFilm" autocomplete="off">
+    <form @submit.prevent="addFilm">
       <v-toolbar dark color="teal">
         <v-toolbar-title>Séléction du Titre</v-toolbar-title>
         <v-combobox
@@ -74,7 +74,7 @@ export default {
         val && val !== this.select && this.getResult(val);
     },
   },
-  beforeMount() {
+  mounted() {
     axios
       .get(
         "https://api.themoviedb.org/3/genre/movie/list?api_key=80d0dd074cbffeb2db4b0123882c7f44"
@@ -118,14 +118,14 @@ export default {
       this.movie.review = "";
       this.movie.description = "";
     },
-    getResult(v) {
+    getResult(val) {
       this.movieProposition = [];
       this.movies = [];
       axios
         .get("https://api.themoviedb.org/3/search/movie", {
           params: {
             api_key: "80d0dd074cbffeb2db4b0123882c7f44",
-            query: v,
+            query: val,
           },
         })
         .then((reponse) => {
