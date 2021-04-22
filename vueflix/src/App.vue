@@ -71,7 +71,7 @@ label {
 .ma-12 {
   position: absolute;
 }
-#Movie {
+.Movie {
   background-color: #0d646b;
   width: 70%;
   height: 170px;
