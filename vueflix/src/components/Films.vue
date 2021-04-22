@@ -1,12 +1,12 @@
 <template>
-  <div id="app" data-app>
+  <div id="Films" data-app>
     <img alt="Vue logo" src="../assets/logo.png" />
     <H1>Bienvenue sur Votre VueFlix !</H1>
     <label for="filtre">filtrer par catégorie:</label>
 
     <select v-model="selected" v-if="loading">
       <option value="">tous</option>
-      <option v-for="option in options" :key="option.id">
+      <option v-for="option in options" :key="option.id" :value="option.name">
         {{ option.name }}
       </option>
     </select>
@@ -14,9 +14,9 @@
       <i>vous avez {{ comptage }} films</i>
     </p>
     <div v-for="film in filmsByGender" :key="film.id">
-      <Movie :film="film"></Movie>
+      <Movie :film="film" :id="'Movie' + film.id" class="Movie"></Movie>
     </div>
-    <MovieCreation />
+    <MovieCreation :categories="this.options" />
   </div>
 </template>
 
@@ -27,17 +27,19 @@ import axios from "axios";
 import Movie from "./Movie.vue";
 import MovieCreation from "./MovieCreation.vue";
 export default {
-  name: "Acceuil",
+  name: "Films",
   components: { Movie, MovieCreation },
   computed: {
-    comptage: function () {
+    comptage() {
       return this.filmsByGender.length;
     },
-    filmsByGender: function () {
-      if (this.selected == "") {
+    filmsByGender() {
+      if (this.selected === "") {
         return this.films;
       } else {
-        return this.films.filter((el) => el.genres.includes(this.selected));
+        return this.films.filter((el) => {
+          return el.genres.includes(this.selected);
+        });
       }
     },
   },
@@ -62,7 +64,7 @@ export default {
         {
           id: 1,
           title: "Parasite",
-          genres: ["comedy", "drama", "thriller"],
+          genres: ["Comedy", "Drama", "Thriller"],
           rating: 9,
           review:
             "With an insightful and searing exploration of human behavior, ‘Parasite’ is a masterfully crafted film that is a definite must watch.",
@@ -72,7 +74,7 @@ export default {
         {
           id: 2,
           title: "Tenet",
-          genres: ["action", "science fiction"],
+          genres: ["Action", "Science Fiction"],
           rating: 7.6,
           review:
             "With an insightful and searing exploration of human behavior, ‘Parasite’ is a masterfully crafted film that is a definite must watch.",
@@ -82,7 +84,7 @@ export default {
         {
           id: 3,
           title: "Joker",
-          genres: ["drama"],
+          genres: ["Drama"],
           rating: 8.8,
           review:
             "With an insightful and searing exploration of human behavior, ‘Parasite’ is a masterfully crafted film that is a definite must watch.",

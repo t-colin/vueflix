@@ -15,7 +15,7 @@
           label="quel est le titre du film ?"
           solo-inverted
         ></v-combobox>
-        <v-btn @click="autocomplete" v-if="loading">ok</v-btn>
+        <v-btn @click="autocomplete">ok</v-btn>
       </v-toolbar>
       <v-text-field
         dark
@@ -51,11 +51,10 @@ import { EventBus } from "../event-bus.js";
 import axios from "axios";
 export default {
   name: "MovieCreation",
+  props: ["categories"],
   data: function () {
     return {
-      categories: [],
       pushcategorie: [],
-      loading: false,
       search: null,
       movie: {
         title: "",
@@ -73,20 +72,6 @@ export default {
       (this.movie.title = this.search),
         val && val !== this.select && this.getResult(val);
     },
-  },
-  mounted() {
-    axios
-      .get(
-        "https://api.themoviedb.org/3/genre/movie/list?api_key=80d0dd074cbffeb2db4b0123882c7f44"
-      )
-      .then((reponse) => {
-        this.loading = true;
-        this.categories = reponse.data.genres;
-        console.log(reponse);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   },
 
   methods: {
