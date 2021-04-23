@@ -47,6 +47,7 @@ export default {
     addMovie(movie) {
       const rating = parseFloat(movie.rating);
       this.films.push({ ...movie, rating });
+      localStorage.setItem("films", JSON.stringify(this.films))
     },
   },
   data: function () {
@@ -108,8 +109,18 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-  },
-};
+      console.log(localStorage.getItem('films'))
+    if(localStorage.getItem('films')){
+      try{
+        this.films = JSON.parse(localStorage.getItem('films')) 
+      } catch(e){
+        localStorage.removeItem('films')
+      }
+      
+    }
+  
+  }
+}
 </script>
 <style lang="scss">
 </style>
