@@ -1,6 +1,7 @@
 <template>
   <div id="Movie">
     <h2>{{ film.title }}</h2>
+
     <p>
       genres :
       <span v-for="genre in film.genres" :key="genre">
@@ -20,11 +21,14 @@
     <router-link
       class="detail"
       :to="{ name: 'detail', params: { id: film.id, film: film } }"
-      >détail</router-link
+      ><v-btn class="detail" elevation="1" x-small>détail</v-btn></router-link
+    ><v-btn class="suppr" elevation="1" x-small @click="deleteMovie"
+      >supprimer</v-btn
     >
   </div>
 </template>
 <script>
+import { EventBus } from "../event-bus.js";
 export default {
   name: "Movie",
   data() {
@@ -32,13 +36,18 @@ export default {
       categories: [],
     };
   },
+  methods: {
+    deleteMovie() {
+      EventBus.$emit("deleteMovie", this.film.id);
+    },
+  },
   props: {
     film: {
       type: Object,
     },
   },
   filters: {
-    idToGenre: function (val) {
+    idToGenre: function(val) {
       for (let el of this.categories) {
         if (val == el.id) {
           return (val = el.name);
@@ -50,8 +59,4 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.detail {
-  text-align: right;
-}
-</style>
+<style lang="scss"></style>

@@ -81,6 +81,11 @@ label {
   margin-bottom: 20px;
   padding-top: 30px;
   border: solid black 1px;
+  box-sizing: content-box;
+}
+.detail {
+  box-sizing: border-box;
+  margin-right: 5px;
 }
 button {
   background-color: $primary-color;
