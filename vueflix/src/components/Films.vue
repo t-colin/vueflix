@@ -7,7 +7,7 @@
     <select v-model="selected" v-if="loading">
       <option value="">tous</option>
       <option v-for="option in options" :key="option.id" :value="option.name">
-        {{ option.name }}
+        {{ option.name | capitalize }}
       </option>
     </select>
     <p>
@@ -29,27 +29,6 @@ import MovieCreation from "./MovieCreation.vue";
 export default {
   name: "Films",
   components: { Movie, MovieCreation },
-  computed: {
-    comptage() {
-      return this.filmsByGender.length;
-    },
-    filmsByGender() {
-      if (this.selected === "") {
-        return this.films;
-      } else {
-        return this.films.filter((el) => {
-          return el.genres.includes(this.selected);
-        });
-      }
-    },
-  },
-  methods: {
-    addMovie(movie) {
-      const rating = parseFloat(movie.rating);
-      this.films.push({ ...movie, rating });
-      localStorage.setItem("films", JSON.stringify(this.films))
-    },
-  },
   data: function () {
     return {
       loading: false,
@@ -95,6 +74,39 @@ export default {
       ],
     };
   },
+  computed: {
+    comptage() {
+      return this.filmsByGender.length;
+    },
+    filmsByGender() {
+      if (this.selected === "") {
+        return this.films;
+      } else {
+        return this.films.filter((el) => {
+          return el.genres.includes(this.selected);
+        });
+      }
+    },
+  },
+  methods: {
+    addMovie(movie) {
+      const id = (this.films.length + 1);
+      const rating = parseFloat(movie.rating);
+      this.films.push({ ...movie, rating, id });
+      localStorage.setItem("films", JSON.stringify(this.films))
+    },
+  },
+  filters: {
+    capitalize: function (value) {
+      if(!value) {
+        return ''
+      } else {
+        value = value.toString();
+        return value.toUpperCase()
+      }
+    }
+  },
+  
   created() {
     EventBus.$on("createMovie", this.addMovie);
     axios
@@ -109,16 +121,13 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-      console.log(localStorage.getItem('films'))
-    if(localStorage.getItem('films')){
-      try{
-        this.films = JSON.parse(localStorage.getItem('films')) 
-      } catch(e){
-        localStorage.removeItem('films')
+      if(localStorage.getItem('films')){
+        try{
+          this.films = JSON.parse(localStorage.getItem('films')) 
+        } catch(e){
+          localStorage.removeItem('films')
+        } 
       }
-      
-    }
-  
   }
 }
 </script>
