@@ -11,7 +11,7 @@
       </option>
     </select>
     <p>
-      <i>vous avez {{ comptage }} films</i>
+      <i>Vous avez {{ comptage }} films</i>
     </p>
     <div v-for="film in filmsByGender" :key="film.id">
       <Movie :film="film" :id="'Movie' + film.id" class="Movie"></Movie>
@@ -29,7 +29,7 @@ import MovieCreation from "./MovieCreation.vue";
 export default {
   name: "Films",
   components: { Movie, MovieCreation },
-  data: function() {
+  data: function () {
     return {
       loading: false,
       options: [],
@@ -96,7 +96,7 @@ export default {
     },
     deleteMovie(id) {
       const index = this.films
-        .map(function(el) {
+        .map(function (el) {
           return el.id;
         })
         .indexOf(id);
@@ -105,7 +105,7 @@ export default {
     },
   },
   filters: {
-    capitalize: function(value) {
+    capitalize: function (value) {
       if (!value) {
         return "";
       } else {
@@ -115,7 +115,7 @@ export default {
     },
   },
   watch: {
-    films: function() {
+    films: function () {
       localStorage.setItem("films", JSON.stringify(this.films));
     },
   },

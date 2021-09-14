@@ -3,7 +3,7 @@
     <Movie :film="this.film"></Movie>
     <div class="texte">
       <div class="description">
-        <h2>description</h2>
+        <h2>Description</h2>
         <p>{{ film.description }}</p>
       </div>
       <div class="review">

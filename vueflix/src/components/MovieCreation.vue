@@ -3,7 +3,7 @@
     <h1>Ajouter un film</h1>
     <form @submit.prevent="addFilm">
       <v-toolbar dark color="teal">
-        <v-toolbar-title>Séléction du Titre</v-toolbar-title>
+        <v-toolbar-title>Sélection du titre</v-toolbar-title>
         <v-combobox
           v-model="movie.title"
           :items="movieProposition"
@@ -20,19 +20,19 @@
       <v-text-field
         dark
         v-model="movie.genres"
-        label="genres"
+        label="Genres"
         filled
       ></v-text-field>
       <v-text-field
         dark
         v-model="movie.review"
-        label="review"
+        label="Review"
         filled
       ></v-text-field>
       <v-text-field
         dark
         v-model="movie.description"
-        label="description"
+        label="Description"
         filled
       ></v-text-field>
       <v-rating

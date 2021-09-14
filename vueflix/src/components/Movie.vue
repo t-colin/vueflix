@@ -21,7 +21,7 @@
     <router-link
       class="detail"
       :to="{ name: 'detail', params: { id: film.id, film: film } }"
-      ><v-btn class="detail" elevation="1" x-small>détail</v-btn></router-link
+      ><v-btn class="detail" elevation="1" x-small>détails</v-btn></router-link
     ><v-btn class="suppr" elevation="1" x-small @click="deleteMovie"
       >supprimer</v-btn
     >
@@ -47,7 +47,7 @@ export default {
     },
   },
   filters: {
-    idToGenre: function(val) {
+    idToGenre: function (val) {
       for (let el of this.categories) {
         if (val == el.id) {
           return (val = el.name);

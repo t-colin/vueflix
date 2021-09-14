@@ -7,7 +7,7 @@
             <v-list-item link>
               <v-list-item-content>
                 <v-list-item-title class="title"> VueFlix </v-list-item-title>
-                <v-list-item-subtitle>barre de navigation</v-list-item-subtitle>
+                <v-list-item-subtitle>Barre de navigation</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -21,7 +21,7 @@
               </v-list-item-icon>
               <v-list-item-title
                 ><router-link to="/Films"
-                  >Mes Films</router-link
+                  >Mes films</router-link
                 ></v-list-item-title
               >
             </v-list-item>
@@ -31,7 +31,7 @@
               </v-list-item-icon>
               <v-list-item-title
                 ><router-link to="/"
-                  >page d'Acceuil</router-link
+                  >Page d'acceuil</router-link
                 ></v-list-item-title
               >
             </v-list-item>
