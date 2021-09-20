@@ -3,7 +3,7 @@
     <h1>Ajouter un film</h1>
     <form @submit.prevent="addFilm">
       <v-toolbar dark color="teal">
-        <v-toolbar-title>Sélection du titre</v-toolbar-title>
+        <v-toolbar-title>Titre</v-toolbar-title>
         <v-combobox
           v-model="movie.title"
           :items="movieProposition"
@@ -22,18 +22,21 @@
         v-model="movie.genres"
         label="Genres"
         filled
+        placeholder="Adventure, Thriller"
       ></v-text-field>
       <v-text-field
         dark
         v-model="movie.review"
         label="Review"
         filled
+        placeholder="J'ai passé un super moment"
       ></v-text-field>
       <v-text-field
         dark
         v-model="movie.description"
         label="Description"
         filled
+        placeholder="Harry est un jeune sorcier qui vit..."
       ></v-text-field>
       <v-rating
         hover
@@ -42,6 +45,10 @@
         value="3"
         v-model="movie.rating"
       ></v-rating>
+      <p>
+        Ou cliquez simplement sur "ok" après avoir saisi le nom du film pour
+        vous laisser guider
+      </p>
       <v-btn class="mr-4" type="submit">ajouter le film </v-btn>
     </form>
   </div>

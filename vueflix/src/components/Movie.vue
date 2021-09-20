@@ -14,7 +14,7 @@
         hover
         length="10"
         readonly
-        size="20"
+        :size="screenSize"
         :value="film.rating"
       ></v-rating>
     </p>
@@ -29,8 +29,10 @@
 </template>
 <script>
 import { EventBus } from "../event-bus.js";
+import VueScreenSize from "vue-screen-size";
 export default {
   name: "Movie",
+  mixins: [VueScreenSize.VueScreenSizeMixin],
   data() {
     return {
       categories: [],
@@ -39,6 +41,17 @@ export default {
   methods: {
     deleteMovie() {
       EventBus.$emit("deleteMovie", this.film.id);
+    },
+  },
+  computed: {
+    screenSize() {
+      if (this.$vssWidth >= 540) {
+        return 20;
+      } else if (this.$vssWidth <= 420) {
+        return 8;
+      } else {
+        return 10;
+      }
     },
   },
   props: {

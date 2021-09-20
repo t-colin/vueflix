@@ -1,6 +1,24 @@
 <template>
   <div id="MovieDetail">
-    <Movie :film="this.film"></Movie>
+    <div class="header">
+      <h2>{{ film.title }}</h2>
+      <p>
+        genres :
+        <span v-for="genre in film.genres" :key="genre">
+          {{ genre }}
+        </span>
+      </p>
+      <p>
+        note :
+        <v-rating
+          hover
+          length="10"
+          readonly
+          :size="screenSize"
+          :value="film.rating"
+        ></v-rating>
+      </p>
+    </div>
     <div class="texte">
       <div class="description">
         <h2>Description</h2>
@@ -14,10 +32,8 @@
   </div>
 </template>
 <script>
-import Movie from "./Movie";
 export default {
   name: "MovieDetail",
-  components: { Movie },
   data() {
     return {
       categories: [],
@@ -49,33 +65,46 @@ export default {
 .texte {
   box-sizing: content-box;
   width: 70%;
-  height: 400px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  border: solid black 1px;
   margin-bottom: 20px;
-  background-color: #0d646b;
+  display: flex;
+  justify-content: space-between;
   .description {
     box-sizing: border-box;
     padding: 15px;
-    height: 100%;
-    width: 50%;
+    width: 49%;
     text-align: center;
     padding-top: 30px;
     border: solid black 1px;
+    border-radius: 25px;
+    background-color: #0d646b;
   }
   .review {
     box-sizing: border-box;
     padding: 15px;
-    height: 100%;
-    width: 50%;
+    width: 49%;
     text-align: center;
     padding-top: 30px;
     border: solid black 1px;
+    background-color: #0d646b;
+    border-radius: 25px;
   }
   p {
     font-size: 1.5em;
+    display: inline;
   }
+}
+.header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  height: 100%;
+  width: 70%;
+  text-align: center;
+  border: solid black 1px;
+  background-color: #0d646b;
+  border-radius: 25px;
 }
 </style>
