@@ -101,7 +101,14 @@ button {
   color: #2c3e50;
   margin-top: 60px;
 }
-@media screen and (max-width: 400px) {
+.petitMessage {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+pre {
+  font-family: Avenir, Helvetica, Arial, sans-serif !important;
+}
+@media screen and (max-width: 450px) {
   .mainLogo {
     width: 350px;
   }

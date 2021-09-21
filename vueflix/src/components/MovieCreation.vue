@@ -3,7 +3,7 @@
     <h1>Ajouter un film</h1>
     <form @submit.prevent="addFilm">
       <v-toolbar dark color="teal">
-        <v-toolbar-title>Titre</v-toolbar-title>
+        <v-toolbar-title><pre>Titre  </pre></v-toolbar-title>
         <v-combobox
           v-model="movie.title"
           :items="movieProposition"
@@ -45,7 +45,7 @@
         value="3"
         v-model="movie.rating"
       ></v-rating>
-      <p>
+      <p class="petitMessage">
         Ou cliquez simplement sur "ok" après avoir saisi le nom du film pour
         vous laisser guider
       </p>

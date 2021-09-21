@@ -109,7 +109,7 @@ export default {
   background-color: #0d646b;
   border-radius: 25px;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .texte {
     display: flex;
     flex-direction: column;

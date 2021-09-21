@@ -11,7 +11,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .bienvenue {
     width: 69%;
     margin-right: auto;
