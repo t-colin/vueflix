@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bienvenue">
     <h1>Bienvenue dans votre application VueFlix !</h1>
     <p>Sélectionnez une action dans la barre de navigation pour commencer</p>
   </div>
@@ -10,3 +10,12 @@ export default {
   name: "Acceuil",
 };
 </script>
+<style lang="scss">
+@media screen and (max-width: 400px) {
+  .bienvenue {
+    width: 69%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+</style>

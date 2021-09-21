@@ -39,6 +39,7 @@ export default {
       categories: [],
       id: 0,
       film: null,
+      screenSize: 20,
     };
   },
   filters: {
@@ -55,6 +56,7 @@ export default {
   created() {
     this.id = this.$route.params.id;
     this.film = this.$route.params.film;
+    this.screenSize = this.$route.params.screenSize;
   },
 };
 </script>
@@ -106,5 +108,18 @@ export default {
   border: solid black 1px;
   background-color: #0d646b;
   border-radius: 25px;
+}
+@media screen and (max-width: 400px) {
+  .texte {
+    display: flex;
+    flex-direction: column;
+    .description {
+      width: 100%;
+    }
+    .review {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
 }
 </style>

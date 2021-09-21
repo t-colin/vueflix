@@ -101,4 +101,9 @@ button {
   color: #2c3e50;
   margin-top: 60px;
 }
+@media screen and (max-width: 400px) {
+  .mainLogo {
+    width: 350px;
+  }
+}
 </style>

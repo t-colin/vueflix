@@ -20,7 +20,10 @@
     </p>
     <router-link
       class="detail"
-      :to="{ name: 'detail', params: { id: film.id, film: film } }"
+      :to="{
+        name: 'detail',
+        params: { id: film.id, film: film, screenSize: screenSize },
+      }"
       ><v-btn class="detail" elevation="1" x-small>détails</v-btn></router-link
     ><v-btn class="suppr" elevation="1" x-small @click="deleteMovie"
       >supprimer</v-btn

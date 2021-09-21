@@ -1,6 +1,6 @@
 <template>
   <div id="Films" data-app>
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img class="mainLogo" alt="Vue logo" src="../assets/logo.png" />
     <H1>Bienvenue sur Votre VueFlix !</H1>
     <label for="filtre">filtrer par catégorie:</label>
 
